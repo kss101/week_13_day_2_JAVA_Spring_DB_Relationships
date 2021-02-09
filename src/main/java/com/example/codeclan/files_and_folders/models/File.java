@@ -21,14 +21,14 @@ public class File {
     private long size;
 
     @ManyToOne
-    @JoinColumn(name="folder_id")
-    private List<Folder> folders;
+    @JoinColumn(name="folder_id", nullable = false)
+    private Folder folder;
 
-    public File(String name, String extension, long size){
+    public File(String name, String extension, long size, Folder folder){
         this.name = name;
         this.extension = extension;
         this.size = size;
-        this.folders = new ArrayList<>();
+        this.folder = folder;
     }
 
     public File() {
@@ -66,11 +66,11 @@ public class File {
         this.size = size;
     }
 
-    public List<Folder> getFolders() {
-        return folders;
+    public Folder getFolder() {
+        return folder;
     }
 
-    public void setFolders(List<Folder> folders) {
-        this.folders = folders;
+    public void setFolder(Folder folder) {
+        this.folder = folder;
     }
 }
