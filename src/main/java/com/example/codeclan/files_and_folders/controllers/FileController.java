@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -22,5 +24,12 @@ public class FileController {
         List<File> allFiles = fileRepository.findAll();
         return new ResponseEntity<>(allFiles, HttpStatus.OK);
     }
+
+    @GetMapping("/files/{id}")
+    public ResponseEntity<Optional<File>> getFile(@PathVariable Long id){
+        return new ResponseEntity<>(fileRepository.findById(id), HttpStatus.OK);
+    }
+
     
+
 }
