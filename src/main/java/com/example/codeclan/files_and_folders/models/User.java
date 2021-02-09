@@ -16,7 +16,7 @@ public class User {
     private String name;
 
     @Column
-    @OneToMany(mappedBy = "folder")
+    @OneToMany(mappedBy = "user")
     private List<Folder> folders;
 
     public User(String name){
