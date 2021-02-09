@@ -5,9 +5,7 @@ import com.example.codeclan.files_and_folders.repositories.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +28,10 @@ public class FileController {
         return new ResponseEntity<>(fileRepository.findById(id), HttpStatus.OK);
     }
 
-    
+    @PostMapping("/files")
+    public ResponseEntity<File> createNewFile(@RequestBody File file){
+        fileRepository.save(file);
+        return new ResponseEntity<>(file, HttpStatus.CREATED);
+    }
 
 }
